@@ -5,6 +5,10 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Instagram Video Downloader - Download Reels, Posts & Videos",
   description: "Free Instagram video downloader. Download Instagram reels, posts, and videos in high quality. Fast, simple, and no registration required.",
+  icons: {
+    icon: "/images/iconig-removebg-preview.png",
+    shortcut: "/images/iconig-removebg-preview.png",
+  },
   keywords: "instagram downloader, instagram video downloader, instagram reels downloader, download instagram videos, save instagram videos, instagram post downloader",
   openGraph: {
     title: "Instagram Video Downloader - Download Reels, Posts & Videos",
@@ -35,7 +39,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/images/iconig-removebg-preview.png" />
         <meta name="google-adsense-account" content="ca-pub-6530704775846083" />
         <Script
           async
