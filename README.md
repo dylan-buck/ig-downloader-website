@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Instagram Video Downloader
 
-## Getting Started
+A modern, fast, and user-friendly Instagram video and reel downloader built with Next.js.
 
-First, run the development server:
+## Features
+
+- Download Instagram videos and reels
+- Rate limiting with Upstash Redis
+- Modern UI with Tailwind CSS
+- Mobile responsive
+- SEO optimized
+
+## Tech Stack
+
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- Upstash Redis for rate limiting
+
+## Deployment on Netlify
+
+1. Fork or clone this repository
+2. Create a new site on Netlify
+3. Connect your GitHub repository
+4. Configure environment variables in Netlify:
+   - `USE_UPSTASH`
+   - `UPSTASH_REDIS_REST_URL`
+   - `UPSTASH_REDIS_REST_TOKEN`
+   - `NEXT_PUBLIC_ADSENSE_CLIENT` (if using ads)
+   - `NEXT_PUBLIC_ADSENSE_SLOT` (if using ads)
+
+5. Deploy!
+
+## Local Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Copy environment variables
+cp .env.example .env.local
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copy `.env.example` to `.env.local` and fill in your values:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `USE_UPSTASH`: Enable/disable rate limiting
+- `UPSTASH_REDIS_REST_URL`: Your Upstash Redis REST URL
+- `UPSTASH_REDIS_REST_TOKEN`: Your Upstash Redis REST token
+- `NEXT_PUBLIC_ADSENSE_CLIENT`: Google AdSense client ID (optional)
+- `NEXT_PUBLIC_ADSENSE_SLOT`: Google AdSense slot ID (optional)
 
-## Learn More
+## Rate Limiting
 
-To learn more about Next.js, take a look at the following resources:
+The app uses Upstash Redis for rate limiting. Configure the limits in `src/lib/ratelimit.ts`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
