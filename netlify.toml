@@ -3,8 +3,8 @@
   publish = ".next"
 
 [build.environment]
-  NEXT_PUBLIC_SITE_URL = "https://your-site-name.netlify.app"
-  NODEJS_VERSION = "18"
+  NODE_VERSION = "18.17.0"
+  NPM_VERSION = "9.6.7"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
