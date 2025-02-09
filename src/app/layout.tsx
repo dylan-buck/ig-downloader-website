@@ -35,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/images/iconig-removebg-preview.png" />
         <meta name="google-adsense-account" content="ca-pub-6530704775846083" />
         <Script
           async
