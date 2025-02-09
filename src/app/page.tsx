@@ -95,7 +95,7 @@ export default function Home() {
             Instagram Video Downloader
           </h1>
           <p className="text-white/90 text-center mb-1 max-w-md text-base md:text-lg animate-fade-in-up hover:text-white transition-colors duration-300 cursor-default px-2">
-            Paste the Instagram link and press Load. It's that simple.
+            Paste the Instagram link and press Load. It&apos;s that simple.
             <br />
             Supporting Reels and Videos.
           </p>
@@ -222,7 +222,7 @@ export default function Home() {
           try {
             (adsbygoogle = window.adsbygoogle || []).push({});
           } catch (e) {
-            console.error('Ad initialization error:', e);
+            console.error(&apos;Ad initialization error:&apos;, e);
           }
         `
       }} />
