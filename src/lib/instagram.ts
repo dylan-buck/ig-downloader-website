@@ -4,16 +4,21 @@ interface InstagramResponse {
   height: number;
 }
 
+interface InstagramMediaData {
+  graphql?: {
+    shortcode_media?: {
+      is_video: boolean;
+      video_url?: string;
+      dimensions: {
+        width: number;
+        height: number;
+      };
+    };
+  };
+}
+
 export async function getPostUrl(url: string): Promise<InstagramResponse> {
   try {
-    const API_URL = "https://www.instagram.com/api/v1/oembed";
-    const response = await fetch(`${API_URL}?url=${encodeURIComponent(url)}`);
-    
-    if (!response.ok) {
-      throw new Error("Failed to fetch Instagram post data");
-    }
-
-    const data = await response.json();
     const postId = extractPostId(url);
     
     if (!postId) {
@@ -22,8 +27,9 @@ export async function getPostUrl(url: string): Promise<InstagramResponse> {
 
     const mediaData = await getMediaData(postId);
     return mediaData;
-  } catch (error: any) {
-    throw new Error(error.message || "Failed to process Instagram URL");
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : "Failed to process Instagram URL";
+    throw new Error(errorMessage);
   }
 }
 
@@ -36,14 +42,14 @@ async function getMediaData(postId: string): Promise<InstagramResponse> {
       throw new Error("Failed to fetch media data");
     }
 
-    const data = await response.json();
+    const data: InstagramMediaData = await response.json();
     const mediaData = data.graphql?.shortcode_media;
 
     if (!mediaData) {
       throw new Error("No media found");
     }
 
-    if (mediaData.is_video) {
+    if (mediaData.is_video && mediaData.video_url) {
       return {
         url: mediaData.video_url,
         width: mediaData.dimensions.width,
@@ -52,8 +58,9 @@ async function getMediaData(postId: string): Promise<InstagramResponse> {
     } else {
       throw new Error("This post does not contain a video");
     }
-  } catch (error: any) {
-    throw new Error(error.message || "Failed to fetch media data");
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : "Failed to fetch media data";
+    throw new Error(errorMessage);
   }
 }
 

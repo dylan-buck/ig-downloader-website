@@ -2,6 +2,17 @@
 
 import { useState } from 'react';
 
+interface ApiResponse {
+  status: 'success' | 'error';
+  data?: {
+    videoUrl: string;
+    width: number;
+    height: number;
+    filename: string;
+  };
+  message?: string;
+}
+
 export default function Home() {
   const [url, setUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -17,10 +28,10 @@ export default function Home() {
 
     try {
       const response = await fetch(`/api/video?postUrl=${encodeURIComponent(url)}`);
-      const data = await response.json();
+      const data: ApiResponse = await response.json();
 
-      if (data.status === 'error') {
-        throw new Error(data.message);
+      if (data.status === 'error' || !data.data) {
+        throw new Error(data.message || 'Failed to fetch video');
       }
 
       if (data.status === 'success' && data.data.videoUrl) {
@@ -32,9 +43,10 @@ export default function Home() {
       } else {
         throw new Error('No video URL found in response');
       }
-    } catch (err: any) {
-      console.error('Download error:', err);
-      setError(err.message || 'Failed to fetch video. Please try again.');
+    } catch (error) {
+      console.error('Download error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Failed to fetch video';
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }

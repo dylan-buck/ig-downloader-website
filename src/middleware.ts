@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
   }
 
   const ip = request.ip ?? "127.0.0.1";
-  const { success, pending, limit, reset, remaining } = await ratelimit.limit(
+  const { success, limit, reset, remaining } = await ratelimit.limit(
     `ratelimit_${ip}`
   );
   

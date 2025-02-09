@@ -42,12 +42,13 @@ export async function GET(request: Request) {
         videoUrl: data.url,
       },
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error("API Error:", error);
+    const errorMessage = error instanceof Error ? error.message : "Failed to fetch video";
     return NextResponse.json(
       {
         status: "error",
-        message: error.message || "Failed to fetch video",
+        message: errorMessage,
       },
       { status: 500 }
     );
