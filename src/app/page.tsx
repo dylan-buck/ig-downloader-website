@@ -73,23 +73,29 @@ export default function Home() {
 
       {/* Left Side Ad */}
       <div className="fixed left-4 top-1/2 -translate-y-1/2 hidden xl:block">
-        <ins className="adsbygoogle"
-          style={{ display: 'block', width: '160px', height: '600px' }}
-          data-ad-client="YOUR-CLIENT-ID"
-          data-ad-slot="YOUR-AD-SLOT"
-        />
+        <div className="w-[160px] h-[600px] bg-white/5 backdrop-blur-sm rounded-lg">
+          <ins className="adsbygoogle"
+            style={{ display: 'block', width: '160px', height: '600px' }}
+            data-ad-client="ca-pub-6530704775846083"
+            data-ad-slot="LEFT_AD_SLOT"
+            data-full-width-responsive="false"
+          />
+        </div>
       </div>
 
       {/* Right Side Ad */}
       <div className="fixed right-4 top-1/2 -translate-y-1/2 hidden xl:block">
-        <ins className="adsbygoogle"
-          style={{ display: 'block', width: '160px', height: '600px' }}
-          data-ad-client="YOUR-CLIENT-ID"
-          data-ad-slot="YOUR-AD-SLOT"
-        />
+        <div className="w-[160px] h-[600px] bg-white/5 backdrop-blur-sm rounded-lg">
+          <ins className="adsbygoogle"
+            style={{ display: 'block', width: '160px', height: '600px' }}
+            data-ad-client="ca-pub-6530704775846083"
+            data-ad-slot="RIGHT_AD_SLOT"
+            data-full-width-responsive="false"
+          />
+        </div>
       </div>
 
-      <div className="w-full px-4 md:px-6 relative pt-4 md:pt-8">
+      <div className="w-full px-4 md:px-6 xl:px-[200px] relative pt-4 md:pt-8">
         <div className="flex flex-col items-center max-w-2xl mx-auto">
           <h1 className="text-3xl md:text-6xl font-bold text-white mb-1 animate-fade-in-down whitespace-normal md:whitespace-nowrap text-center">
             Instagram Video Downloader
@@ -204,8 +210,8 @@ export default function Home() {
         <div className="max-w-2xl mx-auto mt-4">
           <ins className="adsbygoogle"
             style={{ display: 'block' }}
-            data-ad-client="YOUR-CLIENT-ID"
-            data-ad-slot="YOUR-AD-SLOT"
+            data-ad-client="ca-pub-6530704775846083"
+            data-ad-slot="BOTTOM_AD_SLOT"
             data-ad-format="auto"
             data-full-width-responsive="true"
           />
@@ -216,13 +222,15 @@ export default function Home() {
         Enter any Instagram video or reel URL to download
       </footer>
 
-      {/* Initialize Ads - only once */}
+      {/* Initialize Ads */}
       <script dangerouslySetInnerHTML={{
         __html: `
           try {
-            (adsbygoogle = window.adsbygoogle || []).push({});
+            [].forEach.call(document.querySelectorAll('.adsbygoogle'), function() {
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            });
           } catch (e) {
-            console.error(&apos;Ad initialization error:&apos;, e);
+            console.error('Ad initialization error:', e);
           }
         `
       }} />
